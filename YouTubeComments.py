@@ -13,15 +13,17 @@ from selenium.webdriver.chrome.options import Options
 options = Options()
 options.headless = True
 data=[]
+iterations = 3
+delay = 3
 
 
 with Chrome(executable_path=r'C:\Users\SHAHARYAR\Documents\chromedriver.exe',chrome_options=options) as driver:
     wait = WebDriverWait(driver,15)
     driver.get(input("Please Enter the YouTube URL: "))
 
-    for item in range(3): 
+    for item in range(iterations): 
         wait.until(EC.visibility_of_element_located((By.TAG_NAME, "body"))).send_keys(Keys.END)
-        time.sleep(3)
+        time.sleep(delay)
     
     buttons = wait.until(EC.presence_of_all_elements_located((By.ID, "more-replies")))
 
